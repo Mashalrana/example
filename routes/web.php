@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/planeten', function () {
     $planeten = ["Uranus", "Jupiter", "Mars", "Aarde", "Saturnus", "Pluto", "Neptunus", "Venus"];
     return $planeten;
@@ -30,7 +19,7 @@ Route::get('/planets', function () {
         ],
         [
             'name' => 'Earth',
-            'description' => 'Our home planet is the third planet from the Sun, and the only place we know of so far thats inhabited by living things.'
+            'description' => 'Our home planet is the third planet from the Sun, and the only place we know of so far that is inhabited by living things.'
         ],
         [
             'name' => 'Jupiter',
@@ -52,7 +41,7 @@ Route::get('/planets/{name}', function ($name) {
         ],
         [
             'name' => 'Earth',
-            'description' => 'Our home planet is the third planet from the Sun, and the only place we know of so far thats inhabited by living things.'
+            'description' => 'Our home planet is the third planet from the Sun, and the only place we know of so far that is inhabited by living things.'
         ],
         [
             'name' => 'Jupiter',
@@ -67,3 +56,7 @@ Route::get('/planets/{name}', function ($name) {
     return view("planets", ['planet' => $planet]);
 });
 
+use App\Http\Controllers\PlanetController;
+
+Route::get('/planets', [PlanetController::class, 'index']);
+Route::get('/planets/{planet}', [PlanetController::class, 'show']);
